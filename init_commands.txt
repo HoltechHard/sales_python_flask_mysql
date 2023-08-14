@@ -1,0 +1,39 @@
+=================================================================
+|     BASIC COMMANDS FOR PYTHON + FLASK + MYSQL APPLICATION     |
+=================================================================
+
+1) install virtual environment using pip
+
+> pip install virtualenv
+
+2) create the virtual environment
+
+> python -m venv flask_env
+
+3) init the virtual environment
+
+> .\flask_env\Scripts\activate
+
+OBS: if some problem succeed, execute this command in power shell:
+
+> Set-ExecutionPolicy Unrestricted
+
+4) install Flask package
+
+(flask_env) > pip install Flask
+
+5) install mysql connector
+
+(flask_env) > pip install mysql-connector-python
+
+6) take position in folder that contains application
+
+(flask_env) > cd app_sales
+
+7) to run application
+
+(flask_env) > python app_flask.py
+
+8) upload project to github repo
+
+
