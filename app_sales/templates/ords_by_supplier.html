@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %} Orders by supplier {% endblock %}
+
+{% block content %}
+
+    <h2>List of orders by supplier</h2>
+
+    <div id="dvOrders">
+    {% for supplier in data_suppliers %}
+        <h4>
+            Register of orders for supplier N° {{ supplier.id }} <br><br>
+            Name of Supplier: <span style="font-weight: bold;">{{ supplier.name }}</span>
+        </h4>
+        <p>
+            Status: {{ supplier.status }} <br><br>
+            Number of Orders: {{ supplier.num_orders }} <br><br>
+            Accumulate: <span style="font-weight: bold;">$ {{ supplier.accumulate }}</span> <br><br>
+            <span>------------------------------------------------------------------</span>
+        </p>
+
+        <div id="tblOrdSupplier">
+        {% if supplier.orders %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date generated</th>
+                        <th>Order-ID</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for order in supplier.orders %}
+                    <tr>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.total }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p> Supplier 
+                <span style="font-weight: bold;">{{ supplier.name }}</span> doesn't made orders 
+                <br><br>
+            </p>
+        {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

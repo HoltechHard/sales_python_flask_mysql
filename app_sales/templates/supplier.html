@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} Supplier form {% endblock %}
+
+{% block content %}
+
+    <h2>List of Suppliers</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Number of Orders</th>
+                <th>Accumulate of Orders</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for supplier in lst_suppliers %}
+            <tr>
+                <td>{{ supplier.id }}</td>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.status }}</td>
+                <td>{{ supplier.num_orders }}</td>
+                <td>{{ supplier.acc_orders }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

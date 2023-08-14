@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Index {% endblock %}
+
+{% block content %}
+    
+    <h1>System of sales in Python + Flask + MySQL</h1>
+
+    <a href="{{ url_for('persons') }}">Persons</a> <br><br>
+    <a href="{{ url_for('suppliers') }}">Suppliers</a> <br><br>
+    <a href="{{ url_for('categories') }}">Categories</a> <br><br>
+    <a href="{{ url_for('brands') }}">Brands</a> <br><br>
+    <a href="{{ url_for('products') }}">Products</a> <br><br>
+    <a href="{{ url_for('orders') }}">Orders</a> <br><br>
+    <a href="{{ url_for('orders_by_supplier') }}">Orders by supplier</a> <br><br>
+    <a href="{{ url_for('prods_by_category') }}">Products by category</a> <br><br>
+    
+
+{% endblock %}

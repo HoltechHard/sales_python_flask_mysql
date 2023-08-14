@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %} Products by Category {% endblock %}
+
+{% block content %}
+
+    <h2>List of Products by Category</h2>
+
+    <div id="dvProducts">
+    {% for category in data_categories %}
+        <h4>
+            Register of products for category N° {{ category.id }}            
+        </h4>
+        <p>
+            Name of Category: <span style="font-weight: bold;">{{ category.name }}</span> <br><br>
+            <span>----------------------------------------------------</span>
+        </p>
+
+        <div id="tblProdCategory">
+        {% if category.products %}
+            <table>            
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>Unit Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for product in category.products %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.unit_price }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>            
+            </table>
+        {% else %}
+            <p> Category
+                <span style="font-weight: bold;">{{ category.name }}</span> doesn't have products
+            </p>
+        {% endif %}
+        </div>
+
+    {% endfor %}
+    </div>
+
+{% endblock %}

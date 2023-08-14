@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} Person form {% endblock %}
+
+{% block content %}
+
+    <h2>List of persons</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID </th>
+                <th>Name </th>
+                <th>Email </th>
+                <th>Company </th>
+                <th>Type Person</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for person in lst_persons %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.company }}</td>
+                <td>{{ person.type }}</td>
+            </tr>            
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

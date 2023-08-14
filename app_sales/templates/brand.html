@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} Brand form {% endblock %}
+
+{% block content %}
+
+    <h2>List of Brands</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date creation</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brand in lst_brands %}
+            <tr>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.name }}</td>
+                <td>{{ brand.date_creation }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
