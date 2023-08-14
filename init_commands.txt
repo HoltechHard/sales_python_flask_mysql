@@ -34,6 +34,24 @@ OBS: if some problem succeed, execute this command in power shell:
 
 (flask_env) > python app_flask.py
 
-8) upload project to github repo
+8) create and link project to github repo
 
+$ echo "# sales_python_flask_mysql" >> README.md
+$ git init
+$ git add README.md 
+$ git commit -m "project description"
+$ git remote add origin https://github.com/HoltechHard/sales_python_flask_mysql.git
+$ git push -u origin master
+ 
+9) upload project to github repo
 
+$ git add app_sales/*
+$ git commit -m "sales application with python + flask"
+$ git add flask_env/*
+$ git commit -m "flask virtual environment"
+$ git add mysql_database
+$ git commit -m "mysql database"
+$ git add init_commands.txt
+$ git commit -m "command lines to setting project"
+$ git pull origin master
+$ git push origin master
