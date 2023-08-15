@@ -43,6 +43,9 @@ def orders_by_supplier():
 def prods_by_category():
     return render_template("prods_by_category.html", data_categories = Product.generate_prods_by_category())
 
+@app.route("/details_by_order")
+def details_by_order():
+    return render_template("details_by_order.html", data_all_orders = Order.generate_details_by_order())
 
 if __name__ == "__main__":
     app.run(debug = True)
