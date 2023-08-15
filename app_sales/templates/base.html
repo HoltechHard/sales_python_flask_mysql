@@ -4,12 +4,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Untitled {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.3.1/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.3.1/icons/font/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
+    <script src="{{ url_for('static', filename = 'bootstrap-5.3.1/js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename = 'js/jquery-3.7.0.min.js') }}"></script>
 </head>
 <body>
 
-    {% block content %}
-    {% endblock %}
-    
+    <header class="p-2 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img src="{{ url_for('static', filename = 'images/insight.jpg') }}" alt="logo" class="logo">
+                </a>
+        
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                </ul>
+        
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+                </form>
+        
+                <div class="text-end">
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+                </div>
+            </div>
+        </div>
+    </header>
+            
+    <main>
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <span class="fs-5 d-none d-sm-inline">Menu</span>
+                        </a>
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                            <!-- Home -->
+                            <li class="nav-item">
+                                <a href="/" class="nav-link align-middle px-0 text-white">
+                                    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                                </a>
+                            </li>
+                            <!-- Users -->
+                            <li>
+                                <a href="#submenu1" data-bs-toggle="collapse"  class="nav-link px-0 align-middle text-white">
+                                    <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Users</span> 
+                                </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                    <li class="w-100">
+                                        <a href="{{ url_for('persons') }}" class="nav-link px-0 text-white"> 
+                                            <i class="bi bi-person"></i> <span class="d-none d-sm-inline">Person</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url_for('suppliers') }}" class="nav-link px-0 text-white"> 
+                                            <i class="bi bi-person-vcard"></i> <span class="d-none d-sm-inline">Supplier</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Groups -->
+                            <li>
+                                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+                                    <i class="fs-4 bi-box"></i> <span class="ms-1 d-none d-sm-inline">Groups</span></a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                    <li class="w-100">
+                                        <a href="{{ url_for('categories') }}" class="nav-link px-0 text-white"> 
+                                            <i class="bi bi-bookmarks"></i> <span class="d-none d-sm-inline">Category</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url_for('brands') }}" class="nav-link px-0 text-white"> 
+                                            <i class="bi bi-bag"></i> <span class="d-none d-sm-inline">Brand</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Products -->
+                            <li>
+                                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+                                    <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> 
+                                </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                                    <li class="w-100">
+                                        <a href="{{ url_for('products') }}" class="nav-link px-0 text-white"> 
+                                            <i class="bi bi-list-task"></i> <span class="d-none d-sm-inline">List of Products</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url_for('prods_by_category') }}" class="nav-link px-0 text-white"> 
+                                            <i class="bi bi-list-columns-reverse"></i> <span class="d-none d-sm-inline">Products by category</span>
+                                        </a>
+                                    </li>                                
+                                </ul>
+                            </li>
+                            <!-- Orders -->
+                            <li>
+                                <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+                                    <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span>
+                                </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+                                    <li class="w-100">
+                                        <a href="{{ url_for('orders') }}" class="nav-link px-0 text-white">
+                                            <i class="bi bi-list"></i> <span class="d-none d-sm-inline">List of orders</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url_for('orders_by_supplier') }}" class="nav-link px-0 text-white">
+                                            <i class="bi bi-person-lines-fill"></i> <span class="d-none d-sm-inline">Orders by supplier</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url_for('details_by_order') }}" class="nav-link px-0 text-white">
+                                            <i class="bi bi-cart2"></i> <span class="d-none d-sm-inline">Items by order</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Reports -->
+                            <li>
+                                <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+                                    <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Reports</span> 
+                                </a>
+                            </li>                                     
+                        </ul>
+                        <hr>
+                        <div class="dropdown pb-4">
+                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ url_for('static', filename = 'images/holtech.jpg') }}" alt="hugenerd" width="45" height="45" class="rounded-circle"> &nbsp;
+                                <span class="d-none d-sm-inline mx-1">User</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                                <li><a class="dropdown-item" href="#">New project...</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col py-3">
+                    Content area...
+
+                    {% block content %}
+
+                    {% endblock %}
+                
+                </div>
+            </div>
+        </div>
+        Footer
+    </main>
+        
 </body>
 </html>
