@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %} Details by order {% endblock %}
+
+{% block content %}
+
+    <h2>List of items by order</h2>
+
+    <div id="DvOrders">
+    {% for order in data_all_orders.lst_orders %}
+        <h4>
+            Register of items for order {{ order.id }}
+        </h4>
+        <p>
+            Date generated: {{ order.date_generated }} <br><br>
+            Supplier: {{ order.supplier }} <br><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Items <br>
+            <span>----------------------------------------------------</span>
+        </p>
+
+        <div id="lstItems">
+        {% if order.details %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>#Item</th>
+                        <th>Product</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                {% for detail in order.details %}
+                    <tr>
+                        <td>{{ detail.num_item }}</td>
+                        <td>{{ detail.product }}</td>
+                        <td>{{ detail.unit_price }}</td>
+                        <td>{{ detail.quantity }}</td>
+                        <td>{{ detail.subtotal }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p> Order
+                <span style="font-weight: bold;">{{ order.id }}</span> doesn't have items
+            </p>
+        {% endif %}
+
+        <p>
+            Total of order ---------------------------------------------------
+            $ <span style="font-weight: bold;">{{ order.total }}</span>
+        </p>
+        </div>
+
+    {% endfor %}
+    </div>
+
+    <div id="dvTotal">
+        <p>
+            Total accumulate by all orders ------------------------------------------------------------------
+            $ <span style="font-weight: bold;">{{ data_all_orders.acc_all_orders }}</span>
+        </p>
+    </div>
+
+{% endblock %}
