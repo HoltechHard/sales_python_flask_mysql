@@ -491,7 +491,7 @@ class Order:
         else:
             print("Order not inserted")
 
-    # print orders
+    # generate JSON structure for order
     def generate_order():
         ords = []
         for row in Order.list_orders():
@@ -517,6 +517,43 @@ class Order:
             print(f"id-order: {ord[0]} | date-generated: {ord[1]} | "
                   f"supplier: {ord[2]} | total: {ord[3]}")
 
+    # generate JSON structure for details by order
+    def generate_details_by_order():
+        ords = []
+
+        for ord in Order.list_orders():
+            o_id = ord[0]
+            items = []
+
+            ords.append({
+                'id': ord[0],
+                'date_generated': ord[1],
+                'supplier': ord[2],
+                'details': items,
+                'total': ord[3]
+            })
+
+            ls_details = OrderDetail.list_details(o_id)
+            i = 0
+
+            if ls_details:
+                for item in ls_details:
+                    i +=1
+                    items.append({
+                        'num_item': i,
+                        'product': item[0],
+                        'unit_price': item[1],
+                        'quantity': item[2],
+                        'subtotal': item[3]
+                    })
+
+        data = {
+            'lst_orders': ords,
+            'acc_all_orders': Order.show_accumulate_ords()
+        }
+
+        return data
+
     # print details by order
     def print_details_by_order():
         print(" --- List of orders with items --- ")
@@ -540,42 +577,4 @@ class Order:
             print(f"Total for order {ord[0]}: -------------------------------------- $ {ord[3]}")
         print(f"Accumulate for all orders: ---------------------------------------------------- "
               f"$ {Order.show_accumulate_ords()}")
-
-def main():
-    
-    # Person(None, "Juan", "juan@gmail.com", 1, 3).insert_person()
-    # Person(10, "Juan", "juan123@gmail.com", 1, 2).edit_person()
-    Person.print_person()
-
-    # Supplier(10, "inactive supplier").insert_supplier()
-    # Supplier(10, "active supplier").edit_supplier()
-    Supplier.print_supplier()
-    Supplier.print_ord_by_supplier()
-
-    # Category(None, "fragance").insert_category()
-    # Category(6, "luxury goods").edit_category()
-    Category.print_category()
-
-    # Brand(None, "Dior", "1946-12-16").insert_brand()
-    # Brand(8, "Dior's", "1946-12-16").edit_brand()
-    Brand.print_brand()
-
-    # Product(None, "X01-5616-592", "Cristian Dior perfume", "spray perfume", 
-    #                       10.0, 6, 8).insert_product()
-    # Product(10, "X01-7878-512", "Miss Dior Eau perfume", "spray perfume for women", 
-    #                       12.0, 6, 8).edit_product()
-    Product.print_product()
-    Product.print_prod_by_category()
-
-    # Order("A007", 6, [
-    #    OrderDetail("A007", p_id = 1, od_quantity = 2),
-    #    OrderDetail("A007", p_id = 4, od_quantity = 2),
-    #    OrderDetail("A007", p_id = 6, od_quantity = 1),
-    #    OrderDetail("A007", p_id = 10, od_quantity = 3)
-    # ]).insert_order()
-    Order.print_orders()
-    Order.print_details_by_order()
-
-if __name__ == "__main__":
-    main()
 
