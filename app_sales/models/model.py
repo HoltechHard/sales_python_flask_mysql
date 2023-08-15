@@ -200,7 +200,7 @@ class Category:
 
         return res
 
-    # print category
+    # generate JSON structure for category
     def generate_category():
         data = []
         for row in Category.list_category():
@@ -254,7 +254,7 @@ class Brand:
 
         return res
 
-    # print brand
+    # generate JSON structure for brand
     def generate_brand():
         data = []
         for row in Brand.list_brand():
@@ -314,7 +314,7 @@ class Product:
 
         return res
 
-    # print products
+    # generate JSON structure for product
     def generate_product():
         data = []
         for row in Product.list_product():
